@@ -1,0 +1,41 @@
+{
+  "name": "sters/cakephp3-aws-s3-datasource",
+  "description": "AWS S3 datasource in CakePHP3",
+  "type": "cakephp-plugin",
+  "license": "MIT",
+  "keywords": [
+    "cakephp3",
+    "aws",
+    "s3",
+    "datasource"
+  ],
+  "homepage": "https://github.com/sters/cakephp3-aws-s3-datasource",
+  "authors": [
+    {
+      "name": "sters"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "aws/aws-sdk-php": "~3.18"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*",
+    "cakephp/cakephp": "~3.2",
+    "cakephp/cakephp-codesniffer": "dev-master",
+    "mockery/mockery": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "CakeS3\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "CakeS3\\Test\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "phpunit"
+  }
+}
