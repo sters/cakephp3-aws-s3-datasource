@@ -27,13 +27,14 @@ one Datasrouce has one S3 Bucket connection.
 ```
 'Datasource' => [
     'my_s3_connection' => [
-        'class'      => 'CakeS3\Datasource\Connection',
+        'className'  => 'CakeS3\Datasource\Connection',
         'key'        => 'put your s3 access key',
         'secret'     => 'put your s3 access secret',
         'bucketName' => 'put your bucket name',
     ],
 ],
 ```
+
 
 Setup new table using s3 connection.
 
