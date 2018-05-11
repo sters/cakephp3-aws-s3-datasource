@@ -28,7 +28,7 @@ class ConnectionTest extends TestCase
         $mock = m::mock('overload:\Aws\S3\S3Client');
         $mock->shouldReceive('registerStreamWrapper')
             ->once();
-        $mock->shouldReceive('doesBucketExist')
+        $mock->shouldReceive('getCommand')
             ->once()
             ->andReturn(true);
 
@@ -76,25 +76,6 @@ class ConnectionTest extends TestCase
 
         $params = [];
         new Connection($params);
-    }
-
-    /**
-     * Test new instance failed, missing bucket
-     *
-     * @return void
-     */
-    public function testNewInstanceBucketIsNotExist()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-
-        $mock = m::mock('overload:Aws\S3\S3Client');
-        $mock->shouldReceive('registerStreamWrapper')
-            ->once();
-        $mock->shouldReceive('doesBucketExist')
-            ->once()
-            ->andReturn(false);
-
-        $this->__getConnectionInstance();
     }
 
     /**
