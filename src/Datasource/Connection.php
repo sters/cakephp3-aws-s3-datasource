@@ -42,9 +42,8 @@ class Connection implements ConnectionInterface
         ]);
         $this->_s3Client->registerStreamWrapper();
 
-        if ($this->_s3Client->doesBucketExist($this->_config['bucketName']) === false) {
-            throw new \InvalidArgumentException("Bucket '{$this->_config['bucketName']}' is not found.");
-        }
+        // check has bucket
+        $this->_s3Client->getCommand('HeadBucket', ['Bucket' => $this->_config['bucketName']]);
     }
 
     /**
@@ -105,6 +104,27 @@ class Connection implements ConnectionInterface
      */
     public function logger($instance = null)
     {
+    }
+
+    /**
+     * This method is not supported.
+     *
+     * @return \Cake\Database\Log\QueryLogger logger instance
+     */
+    public function getLogger()
+    {
+        return new \Cake\Database\Log\QueryLogger();
+    }
+
+    /**
+     * This method is not supported.
+     *
+     * @param \Cake\Database\Log\QueryLogger $logger Logger object
+     * @return $this
+     */
+    public function setLogger($logger)
+    {
+        return $this;
     }
 
     /**
