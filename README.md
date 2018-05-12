@@ -31,6 +31,7 @@ one Datasrouce has one S3 Bucket connection.
         'key'        => 'put your s3 access key',
         'secret'     => 'put your s3 access secret',
         'bucketName' => 'put your bucket name',
+        'region'     => 'put your region',
     ],
 ],
 ```
@@ -42,7 +43,7 @@ Setup new table using s3 connection.
 
 ```
 <?php
-namespace App\Model\Table\;
+namespace App\Model\Table;
 
 use CakeS3\Datasource\AwsS3Table;
 
@@ -52,7 +53,7 @@ class MyS3Table extends AwsS3Table
 }
 ```
 
-For example, declare action of get & show S3 Object. 
+For example, declare action of get & show S3 Object.
 
 ```
 class TopController extends Controller
@@ -61,10 +62,10 @@ class TopController extends Controller
     {
         $MyS3Table = TableRegistry::get('MyS3');
         $content = $MyS3Table->getObjectBody('/path/to/object/file.jpg');
-        
+
         $this->response->type('image/jpeg');
         $this->response->body($content);
-        
+
         return $this->response;
     }
 }
@@ -77,7 +78,7 @@ class TopController extends Controller
 
 The methods can call on your S3 Table.
 
-If You want more detail, go to S3Client document.  
+If You want more detail, go to S3Client document.
 [http://docs.aws.amazon.com/aws-sdk-php/v3/api/class-Aws.S3.S3Client.html](http://docs.aws.amazon.com/aws-sdk-php/v3/api/class-Aws.S3.S3Client.html)
 
 #### ```copyObject(string $srcKey, string $destKey, array $options = []) : \Aws\Result```

@@ -1,0 +1,19 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/php:5.6-apache-jessie-node-browsers
+    working_directory: ~/repo
+    steps:
+      - run: sudo apt-get install libicu-dev libmcrypt-dev
+      - run: sudo docker-php-ext-install intl && sudo docker-php-ext-install mcrypt
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "composer.json" }}
+      - run: composer install
+      - save_cache:
+          paths:
+            - vendor
+          key: v1-dependencies-{{ checksum "composer.json" }}
+      - run: composer test
